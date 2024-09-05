@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+// src/App.jsx
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 

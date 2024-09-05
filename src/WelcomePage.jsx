@@ -13,7 +13,7 @@ const WelcomePage = () => {
         <div className="p-6 bg-white rounded-lg shadow-md">
           <h2 className="text-2xl mb-4">Get Started</h2>
           <p className="mb-4">Click below to enter the chat application.</p>
-          <Link to="/chat">
+          <Link to="/App">
             <button className="bg-blue-500 text-white px-4 py-2 rounded">
               Enter Chat App
             </button>
