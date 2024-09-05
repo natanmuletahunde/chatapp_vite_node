@@ -1,49 +1,40 @@
 /* eslint-disable no-unused-vars */
+// src/ChatApp.jsx
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-// Initialize the socket connection
 const socket = io('http://localhost:3001');
 
-const App = () => {
+const ChatApp = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    // Event listener for incoming chat messages
     socket.on('chat message', (msg) => {
-      console.log('Received chat message:', msg); // Debugging line
       setMessages((prevMessages) => [...prevMessages, msg]);
     });
 
-    // Event listener for deleting a message
     socket.on('delete message', (msgId) => {
-      console.log('Received delete message event for id:', msgId); // Debugging line
       setMessages((prevMessages) =>
         prevMessages.filter((msg) => msg.id !== msgId)
       );
     });
 
-    // Cleanup listeners on component unmount
     return () => {
       socket.off('chat message');
       socket.off('delete message');
     };
   }, []);
 
-  // Function to send a new message
   const sendMessage = () => {
     if (message.trim()) {
       const msgObj = { id: Date.now(), text: message };
-      console.log('Sending message:', msgObj); // Debugging line
       socket.emit('chat message', msgObj);
       setMessage('');
     }
   };
 
-  // Function to delete a message
   const deleteMessage = (msgId) => {
-    console.log('Request to delete message with id:', msgId); // Debugging line
     socket.emit('delete message', msgId);
   };
 
@@ -54,7 +45,7 @@ const App = () => {
     >
       <div
         className="w-full max-w-md rounded-lg shadow-md p-4 backdrop-blur-lg border-2 border-white bg-opacity-80"
-        style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }} // Adds background color with transparency
+        style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}
       >
         <div className="mb-4 h-64 overflow-y-scroll border-b">
           {messages.map((msg) => (
@@ -93,4 +84,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ChatApp;
