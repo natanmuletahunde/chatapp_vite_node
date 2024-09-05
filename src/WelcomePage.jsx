@@ -1,15 +1,14 @@
 /* eslint-disable no-unused-vars */
-// src/WelcomePage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
 const WelcomePage = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-cover bg-center"
+    <div className="flex flex-col h-screen bg-cover bg-center"
          style={{ backgroundImage: 'url("https://static.vecteezy.com/system/resources/previews/000/561/500/original/chat-app-logo-icon-vector.jpg")' }}>
-      <header className="w-full bg-blue-500 p-4 text-white text-center">
-        <h1 className="text-3xl">Welcome to Our Chat App</h1>
-      </header>
+      <Header />
       <main className="flex-grow flex items-center justify-center">
         <div className="p-6 bg-white rounded-lg shadow-md">
           <h2 className="text-2xl mb-4">Get Started</h2>
@@ -21,9 +20,7 @@ const WelcomePage = () => {
           </Link>
         </div>
       </main>
-      <footer className="w-full bg-gray-800 p-4 text-white text-center">
-        <p>© 2024 Chat App</p>
-      </footer>
+      <Footer />
     </div>
   );
 };
